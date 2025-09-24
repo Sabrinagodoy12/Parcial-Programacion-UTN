@@ -2,7 +2,7 @@
 
 En este repositorio se encuentra el parcial que debemos desarrollar para la materia Programación 1 de la Tecnicatura en programación de la Universidad Tecnológica Nacional
 
-# Enunciado:
+## Enunciado:
 
 La biblioteca escolar necesita un sistema de gestión sencillo para su catálogo de libros y las
 copias disponibles. Se pide desarrollar un programa con una interfaz basada en menú que
