@@ -13,15 +13,19 @@ elija salir.
 
 ## Requerimientos del Menú
 
-1. Ingresar títulos → permite agregar los títulos de los libros.
-2. Ingresar ejemplares → cantidad de copias para cada título.
-3. Mostrar catálogo → muestra todos los libros con su stock.
-4. Consultar disponibilidad → busca un título y muestra cuántos ejemplares hay.
-5. Listar agotados → muestra los títulos con 0 ejemplares.
-6. Agregar título → permite sumar un nuevo libro al catálogo.
-7. Actualizar ejemplares (préstamo/devolución) → modifica el stock.
-8. Salir → termina el programa.
+1. Ingresar títulos → Para agregar los títulos iniciales de los libros, el usuario indica la cantidad inicial.
+2. Ingresar ejemplares → Para agregar una cantidad de copias para cada título.
+3. Mostrar catálogo → Muestra todos los libros y su stock actual.
+4. Consultar disponibilidad → Busca un título específico y muestra cuántos ejemplares hay.
+5. Listar agotados → Muestra los títulos que tienen 0 ejemplares.
+6. Agregar título → Permite añadir un nuevo libro y sus ejemplares disponibles al catálogo, respetando la sincronía de los índices en las listas.
+7. Actualizar ejemplares (préstamo/devolución) → Permite modificar el stock de un libro, elegido por el usuario, para registrar préstamos o devoluciones.
+
+- Préstamo -> Disminuye en 1 la cantidad de ejemplares del libro seleccionado, si hay unidades suficientes.
+- Devolución -> Aumenta en 1 la cantidad de ejemplares del libro seleccionado.
+
+8. Salir → Termina la ejecución del programa.
 
 ## Requerimientos de estructuras
 
-Usar: While, estructura Case para el menú, estructuras condicionales, estructuras secuenciales en Python y realizar las validaciones solicitadas.
+Debes usar un bucle while para navegar por las opciones del menú hasta que el usuario elija salir. Se debe utilizar una estructura case (o su equivalente con if/elif/else) para el menú, así como estructuras condicionales y secuenciales de Python. Se permiten funciones para validar cadenas de texto como lower(), upper() o isdigit().
