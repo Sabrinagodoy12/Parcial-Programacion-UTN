@@ -1,6 +1,6 @@
 # Parcial-Programacion-UTN
 
-En este repositorio se encuentra el parcial que debemos desarrollar para la materia Programación 1 de la Tecnicatura en programación de la Universidad Tecnológica Nacional
+En este repositorio se encuentra el parcial que debemos desarrollar para la materia Programación 1 de la Tecnicatura Universitaria en programación de la Universidad Tecnológica Nacional
 
 ## Enunciado:
 
