@@ -4,8 +4,13 @@ ejemplares = []
 opcion = 0
 
 while opcion != 8:
-    opcion= int(input("\n--- Ingrese el número de la acción que desea realizar --- \n1. Ingresar títulos \n2. Ingresar ejemplares \n3. Mostrar el catálogo de libros \n4. Consultar disponibilidad \n5. Lista de libros agotados \n6. Agregar un nuevo libro \n7. Actualizar ejemplares \n8. Salir del menú \n"))
-    
+    entrada = input("\n--- Ingrese el número de la acción que desea realizar --- \n1. Ingresar títulos \n2. Ingresar ejemplares \n3. Mostrar el catálogo de libros \n4. Consultar disponibilidad \n5. Lista de libros agotados \n6. Agregar un nuevo libro \n7. Actualizar ejemplares \n8. Salir del menú \n")
+
+    if entrada.isdigit():
+        opcion = int(entrada)
+    else:
+        opcion = 0
+
     match opcion:
         #1. Ingresar títulos
         case 1:
@@ -28,6 +33,7 @@ while opcion != 8:
                 print("No existe ningún título en el catálogo. Primero ingrese un título en la opción 1 o 6 del menú si desea ingresar cantidad de ejemplares.")
                 continue
 
+            print("\n-- Nuestro catálogo --")
             for i, titulo in enumerate(titulos):
                 print(f"{i + 1}- {titulo}")
             
@@ -69,7 +75,7 @@ while opcion != 8:
             print("\n-- Nuestro catálogo --")
 
             for i in range(len(titulos)):
-                print(f"Libro: {titulos[i]} - Stock: {ejemplares[i]}")
+                print(f"Libro: '{titulos[i]}' - Stock: {ejemplares[i]}")
         
         #4. Consultar disponibilidad
         case 4:
@@ -117,7 +123,7 @@ while opcion != 8:
                 for titulo in titulos:
                     posicion = titulos.index(titulo)
                     if ejemplares[posicion] == 0:
-                        print(titulo)
+                        print(f"- {titulo}")
             else:
                 print("En este momento no tenemos libros agotados.")
 
@@ -135,8 +141,10 @@ while opcion != 8:
             #Pedir cantidad de ejemplares con validación
             while True:
                 entrada = input("\nIngrese la cantidad de ejemplares que desea agregar: ")
+
+                #Se evita que el usuario ingrese un número no válido
                 if not entrada.isdigit():
-                    print("Debe ingresar un número válido.")
+                    print("Usted ha ingresado un número inválido o cero ejemplares. Debe ingresar un número válido.")
                     continue
                 cantidad = int(entrada)
                 break
@@ -153,38 +161,42 @@ while opcion != 8:
                 continue
 
             #Muestro el catálogo para que el usuario elija
+            print("\n -- Catálogo disponible --")
             for i, titulo in enumerate(titulos):
                 print(f"{i + 1} - {titulo}")
 
-                entrada = input("\nSeleccione el número del título que desea para actualizar ejemplares: ")
+            entrada = input("\nSeleccione el número del título que desea para actualizar ejemplares: \n(Si desea volver al menu escriba 'salir') ")
 
-                #Valida que el usuario ingrese al menos algo, evitando que solo presione "Enter"
-                if not entrada.isdigit():  
-                    print("\nDebe ingresar un número válido.")
-                    continue
-                
-                posicion = int(entrada) - 1
+            while entrada != "salir" and (not entrada.isdigit() or int(entrada) < 1 or int(entrada) > len(titulos)):
+                entrada = input("\nEntrada inválida. Ingrese un número válido o 'salir' para volver al menú. ")
 
-                #Valida que la posición este dentro del rango de nuestra lista
-                while posicion < 0 or posicion >= len(titulos):
-                    posicion = int(input("Posición inválida. Intentelo nuevamente: ")) - 1
-                
-                #Le solicita al usuario que presione una letra, según la acción que quiera realizar
-                accion = input("¿Qué acción desea realizar? Ingrese 'p' para préstamo o 'd' para devolución: ").lower()
+                if entrada == "salir":
+                    break
+            
+            if entrada == "salir":
+                continue
 
-                #Si es una de las letras correctas, se muestra un mensaje de éxito y con el stock actual. Sino le muestra un mensaje al usuario con el error
-                if accion == "p":
-                    if ejemplares[posicion] > 0:
-                        ejemplares[posicion] -= 1
-                        print(f"\nPrestamo realizado! Ejemplares disponibles para '{titulos[posicion]}' : {ejemplares[posicion]}")
-                    else:
-                        print(f"\nNo hay ejemplares disponibles de {titulos[posicion]}")
-                
-                elif accion == "d":
-                    ejemplares[posicion] += 1
-                    print(f"\nDevolución realizada! Ejemplares disponibles para '{titulos[posicion]}' : {ejemplares[posicion]}")
-                else:
-                    print("Acción inválida.")
+            posicion = int(entrada) - 1
+
+            accion = input("\n¿Qué acción desea realizar? Ingrese 'p' para préstamo o 'd' para devolución: \n(Ingrese 'salir' para volver al menú.) ").lower()
+
+            while accion != "salir":
+                match accion:
+                    case "p":
+                        if ejemplares[posicion] > 0:
+                            ejemplares[posicion] -= 1
+                            print(f"\nPrestamo realizado! Ejemplares disponibles para '{titulos[posicion]}' : {ejemplares[posicion]}")
+                        else:
+                            print(f"\nNo hay ejemplares disponibles de {titulos[posicion]}")
+                    
+                    case "d":
+                        ejemplares[posicion] += 1
+                        print(f"\nDevolución realizada! Ejemplares disponibles para '{titulos[posicion]}' : {ejemplares[posicion]}")
+
+                    case _:
+                        print("Acción inválida.")
+                        
+                accion = input("\n¿Qué acción desea realizar? ('p', 'd'). \n(Ingrese 'salir' para volver al menú.) ").lower()
 
         #8. Salir del menú
         case 8:
