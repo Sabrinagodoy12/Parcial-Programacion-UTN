@@ -164,15 +164,17 @@ while opcion != 8:
             print("\n -- Catálogo disponible --")
             for i, titulo in enumerate(titulos):
                 print(f"{i + 1} - {titulo}")
-
+            
             entrada = input("\nSeleccione el número del título que desea para actualizar ejemplares: \n(Si desea volver al menu escriba 'salir') ")
 
+            #Valida que la entrada no sea 'salir', que el usuario ingrese algo y que este dentro del rango de nuestra lista
             while entrada != "salir" and (not entrada.isdigit() or int(entrada) < 1 or int(entrada) > len(titulos)):
                 entrada = input("\nEntrada inválida. Ingrese un número válido o 'salir' para volver al menú. ")
 
                 if entrada == "salir":
                     break
-            
+
+            #Si la entrada es 'salir' vuelve al menú
             if entrada == "salir":
                 continue
 
@@ -180,6 +182,7 @@ while opcion != 8:
 
             accion = input("\n¿Qué acción desea realizar? Ingrese 'p' para préstamo o 'd' para devolución: \n(Ingrese 'salir' para volver al menú.) ").lower()
 
+            #Valida y muestra las opciones que el usuario desee hasta que quiera salir al menú
             while accion != "salir":
                 match accion:
                     case "p":
